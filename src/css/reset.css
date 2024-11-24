@@ -5,7 +5,7 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
+  margin: 32px 0;
 }
 
 p:last-child {
@@ -41,6 +41,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+
 }
 
 .nav-list {
@@ -75,3 +76,4 @@ img {
 .nav-link.active::after {
   background: #747bff;
 }
+
