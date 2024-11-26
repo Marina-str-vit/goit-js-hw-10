@@ -1,15 +1,12 @@
 .form {
   width: 360px;
   height: 230px;
-  /* gap: 24px; */
 }
 
 .form>label {
 display: flex;
 flex-direction: column;
 margin-bottom: 16px;
-/* border-radius: 10px; форма по умолчанию с изиТоаст*/
-/* height: 40px; */
 gap: 8px;
 }
 input {
@@ -20,13 +17,6 @@ input {
 }
 
 
-/* input[type="number" i] {
-  border-radius: 4px;
-  font-size: 16px;
-  /* height: 40px; 
-  border: 1px solid #808080;
-} */
-
 fieldset {
   margin-bottom: 24px;
   border-radius: 4px;
@@ -34,10 +24,13 @@ fieldset {
   padding-inline: 0;
 }
 
+fieldset:hover {
+  border-color: #2E2F42;
+}
+
 fieldset>label {
   margin-left: 48px;
-  margin-bottom: 8px;
-  
+  margin-bottom: 8px; 
 } 
 legend {
   margin-left: 28px;
