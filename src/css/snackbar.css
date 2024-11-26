@@ -19,6 +19,7 @@ input {
   border: 1px solid #808080;
 }
 
+
 /* input[type="number" i] {
   border-radius: 4px;
   font-size: 16px;
@@ -41,10 +42,6 @@ fieldset>label {
 legend {
   margin-left: 28px;
 }
-/* input[type="radio" i] {
-  background-color: #4E75FF;
-  /* margin: 0; 
-} */
 
 button {
   font-family: var(--font-family);
@@ -63,3 +60,5 @@ background-color: #4e75ff;
 button:hover {
   background-color: #6c8cff;;
 }
+
+

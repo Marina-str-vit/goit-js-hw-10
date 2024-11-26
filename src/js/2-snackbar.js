@@ -1,5 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import iconResolve from '../img/snackbar/Group.png'
+import iconReject from '../img/snackbar/Group_rej.png'
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -7,7 +9,7 @@ function handleSubmit(event) {
   const delay = parseInt(
     document.querySelector('input[name="delay"]').value,
     10
-  );
+  ) * 1000;
   const state = document.querySelector('input[name="state"]:checked').value;
 
   clearForm();
@@ -15,13 +17,25 @@ function handleSubmit(event) {
   createPromise(delay, state)
     .then(delay => {
       iziToast.success({
-        title: 'Успіх!',
+        position: 'topRight',
+        iconUrl: iconResolve,
+        backgroundColor: '#59A10D',
+        title: 'OK',
+        titleColor: 'white',
+        timeout: delay,
+        messageColor: 'white',
         message: '✅ Fulfilled promise in ' + delay + 'ms',
       });
     })
     .catch(delay => {
       iziToast.error({
-        title: 'Помилка!',
+        position: 'topRight',
+        iconUrl: iconReject,
+        backgroundColor: '#EF4040',
+        title: 'Error',
+        titleColor: 'white',
+        timeout: delay,
+        messageColor: 'white',
         message: '❌ Rejected promise in ' + delay + 'ms',
       });
     });
@@ -47,3 +61,4 @@ function clearForm() {
 }
 
 document.querySelector('.form').addEventListener('submit', handleSubmit);
+
