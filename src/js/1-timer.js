@@ -3,22 +3,6 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-/**=========================== */
-// let userSelectedDate;
-
-// const timerWithFlatpickr = new Flatpickr('#datetime-picker', {
-//   enableTime: true,
-//   time_24hr: true,
-//   defaultDate: new Date(),
-//   minuteIncrement: 1,
-//   onClose(selectedDates) {
-//     console.log(selectedDates[0]);
-//   },
-// });
-
-// const timerWithIziToast = new IziToast;
-/**===================================== */
-
 const objectEl = {
   timer: document.querySelector('.timer'),
   days: document.querySelector('[data-days]'),
@@ -29,34 +13,11 @@ const objectEl = {
   inputTimer: document.querySelector('#datetime-picker'),
 };
 
-objectEl.btnStart.inactive = true;
-objectEl.btnStart.classList.add('timer-button__inactive');
-objectEl.inputTimer.classList.add('timer-input__inactive');
+objectEl.btnStart.disabled = true;
+objectEl.btnStart.classList.add('timer-button__disabled');
+objectEl.inputTimer.classList.add('timer-input__disabled');
 
 let userSelectedDate = null;
-
-// const options = {
-//   enableTime: true,
-//   time_24hr: true,
-//   defaultDate: new Date(),
-//   minuteIncrement: 1,
-//   onClose(selectedDates) {
-//     if (selectedDates[0] > new Date()) {
-//       userSelectedDate = selectedDates[0];
-//       objectEl.btnStart.inactive = false;
-//       objectEl.btnStart.classList.add('timer-button__normal');
-//       objectEl.inputTimer.classList.add('timer-input__normal');
-//     } else {
-//       iziToast.error({
-//         title: 'Error',
-//         message: 'Please choose a date in the future',
-//         position: 'topRight',
-//       });
-//       objectEl.btnStart.classList.add('timer-button__inactive');
-//       objectEl.inputTimer.classList.add('timer-input__inactive');
-//     }
-//   },
-// };
 
 const options = new Flatpickr('#datetime-picker', {
   enableTime: true,
@@ -66,22 +27,21 @@ const options = new Flatpickr('#datetime-picker', {
   onClose(selectedDates) {
     if (selectedDates[0] > new Date()) {
       userSelectedDate = selectedDates[0];
-      objectEl.btnStart.inactive = false;
+      objectEl.btnStart.disabled = false;
       objectEl.btnStart.classList.add('timer-button__normal');
       objectEl.inputTimer.classList.add('timer-input__normal');
     } else {
       iziToast.error({
         title: 'Error',
-        message: 'Please choose a date in the future',
+        message: 'Please, choose a date in the future',
         position: 'topRight',
       });
-      objectEl.btnStart.classList.add('timer-button__inactive');
-      objectEl.inputTimer.classList.add('timer-input__inactive');
+      objectEl.btnStart.classList.add('timer-button__disabled');
+      objectEl.inputTimer.classList.add('timer-input__disabled');
     }
   },
 });
-console.log(Flatpickr);
-
+console.log(options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -112,12 +72,12 @@ objectEl.btnStart.addEventListener('click', () => {
     
     const diff = userSelectedDate - nowDate; 
 
-    objectEl.btnStart.inactive = true;
+    objectEl.btnStart.disabled = true;
     objectEl.btnStart.classList.remove('timer-button__normal');
     objectEl.inputTimer.classList.remove('timer-input__normal');
-    objectEl.btnStart.classList.add('timer-button__inactive');
-    objectEl.inputTimer.classList.add('timer-input__inactive');
-    objectEl.inputTimer.inactive = true;
+    objectEl.btnStart.classList.add('timer-button__disabled');
+    objectEl.inputTimer.classList.add('timer-input__disabled');
+    objectEl.inputTimer.disabled = true;
 
     const timerInterval = setInterval(() => {
       const remainingTime = diff - (new Date() - nowDate);
@@ -142,14 +102,14 @@ objectEl.btnStart.addEventListener('click', () => {
         objectEl.minutes.textContent = addLeadingZero(0);
         objectEl.seconds.textContent = addLeadingZero(0);
         clearInterval(timerInterval);
-        objectEl.btnStart.inactive = false;
-        objectEl.inputTimer.inactive = false;
+        objectEl.btnStart.disabled = false;
+        objectEl.inputTimer.disabled = false;
       }
     }, 1000);
   } else {
     iziToast.error({
       title: 'Error',
-      message: 'Date not selected!',
+      message: 'Date is not selected!',
       position: 'topRight',
     });
   }
