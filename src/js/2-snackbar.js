@@ -9,10 +9,11 @@ function handleSubmit(event) {
   const delay = parseInt(
     document.querySelector('input[name="delay"]').value,
     10
-  ) * 1000;
+  )*1000;
   const state = document.querySelector('input[name="state"]:checked').value;
 
-  clearForm();
+//визов функції очищення форми, ало не потрібно бо використала:  document.querySelector('.form').reset();
+  // clearForm();
 
   createPromise(delay, state)
     .then(delay => {
@@ -39,6 +40,8 @@ function handleSubmit(event) {
         message: '❌ Rejected promise in ' + delay + 'ms',
       });
     });
+  //для очищення форми!!
+    document.querySelector('.form').reset();
 }
 
 function createPromise(delay, state) {
@@ -52,13 +55,15 @@ function createPromise(delay, state) {
     }, delay);
   });
 }
-
-function clearForm() {
-  document.querySelector('input[name="delay"]').value = '';
-  document.querySelectorAll('input[name="state"]').forEach(radio => {
-    radio.checked = false;
-  });
-}
+/**
+ * це також для очищення форми, але більш громіздкий код, на томість використала вище:  document.querySelector('.form').reset();
+ */
+// function clearForm() {
+//   document.querySelector('input[name="delay"]').value = '';
+//   document.querySelectorAll('input[name="state"]').forEach(radio => {
+//     radio.checked = false;
+//   });
+// }
 
 document.querySelector('.form').addEventListener('submit', handleSubmit);
 
